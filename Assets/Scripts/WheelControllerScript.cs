@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WheelControllerScript : MonoBehaviour
@@ -33,9 +31,9 @@ public class WheelControllerScript : MonoBehaviour
     private Transform backLeftTr;
     void Start()
     {
-        acceleration = 500f;
+        acceleration = 1000f;
         breakingForce = 500f;
-        maxTurningAngle = 15f;
+        maxTurningAngle = 20f;
         currentAcceleration = 0f;
         currentBreakingForce = 0f;
         currentTurningAngle = 0f;
@@ -47,7 +45,26 @@ public class WheelControllerScript : MonoBehaviour
         DontMove();
 
         HorizontalMove();
-
+        if(Input.GetKey(KeyCode.D))
+        {
+            frontLeftCol.mass = 200f;
+            backLeftCol.mass = 200f;
+        }
+        else
+        {
+            frontLeftCol.mass = 50f;
+            backLeftCol.mass = 50f;
+        }
+        if(Input.GetKey(KeyCode.A))
+        {
+            frontRightCol.mass = 200f;
+            backRightCol.mass = 200f;
+        }
+        else
+        {
+            frontRightCol.mass = 50f;
+            backRightCol.mass = 50f;
+        }
         RotateWhell(frontRightCol, frontRightTr);
         RotateWhell(frontLeftCol, frontLeftTr);
         RotateWhell(backRightCol, backRightTr);
